@@ -1,0 +1,11 @@
+.divider {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em 0;
+}
+
+.dividerLine {
+    width: 45%;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    transform: translateY(55%);
+}

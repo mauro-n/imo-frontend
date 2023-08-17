@@ -1,0 +1,13 @@
+.btnContainer {
+    width: 100%;
+    display: flex;
+    place-items: center;
+
+    >button {
+        width: 100%;
+        font-weight: 500;
+        height: 2.5em;
+        border: none;
+        color: black;
+    }
+}

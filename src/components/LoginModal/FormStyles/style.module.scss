@@ -1,0 +1,105 @@
+.form {
+    height: 380px;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.registerForm {
+    height: 160px;
+    overflow-y: hidden;
+}
+
+.expandedForm {
+    height: 284px;
+    transition: all 700ms ease-in-out;
+}
+
+.form-header {
+    text-align: center;
+    margin: 0;
+    height: 0;
+}
+
+.h-0 {
+    height: 0;
+}
+
+.hide {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.or-register {
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+}
+
+.opc-0 {
+    opacity: 0;
+}
+
+.go-back-btn-container {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 100ms ease-in;
+    margin-bottom: 0.5em;
+
+    >button {
+        width: 50%;
+        padding: 0;
+        background-color: #f3902d;
+        color: white;
+        font-weight: 400;
+
+        &:hover {
+            border: 1px solid white;
+        }
+
+        &:disabled {
+            &:hover {
+                cursor: default;
+            }
+        }
+    }
+}
+
+.input {
+    margin-bottom: 0.3em;
+
+    >label {
+        margin-left: 1em;
+    }
+}
+
+.loginBtnContainer {
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+
+.loginBtn {
+    width: 100%;
+    height: 2.5em;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: black;
+    border: 1px solid #f3902d;
+    font-weight: 500;
+    border: 1px solid red;
+
+    &:hover {
+        background-color: #5a5147;
+    }
+}
+
+.errMsg-container {
+    color: red;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 0 1em;
+    margin-bottom: 2em;
+}

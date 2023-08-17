@@ -1,0 +1,74 @@
+$btnPadding: 10px 15px;
+
+.navbar {
+    background: rgb(254, 254, 254);
+}
+
+.logo {
+    max-width: 35px;
+    margin: 0 1em 0 0;
+    padding: 0;
+    transform: scale(1.5);
+    border-radius: 100%;
+    background-color: bisque;
+}
+
+.branding {
+    display: flex;
+    place-items: center;
+    font-weight: 600;
+}
+
+.imo {
+    color: red;
+}
+
+.loginMenu {
+    padding: $btnPadding;
+
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        outline: 1px solid #f79d43da;
+    }
+}
+
+.announceBtn {
+    padding: $btnPadding;
+    outline: 1px solid #f79d43da;
+    /* outline: 1px solid #35B4C8; */
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.05);
+    margin: 0 0;
+    transition: background-color 0.10s ease-in;
+
+    &:hover {
+        color: black;
+        background-color: #f5cea7da;
+    }
+}
+
+.profile-info {
+    padding: $btnPadding;
+    outline: 1px solid #f79d43da;
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.10s ease-in;
+    text-align: center;
+
+    &:hover {
+        color: black;
+        background-color: #f5cea7da;
+        cursor: pointer;
+    }
+
+    >a {
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+}

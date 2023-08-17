@@ -1,0 +1,9 @@
+.btn {
+    border: none;
+    background-color: #f3902d;
+    color: white;
+    font-weight: 400;
+    &:hover {
+        filter: brightness(0.95);
+    }
+}

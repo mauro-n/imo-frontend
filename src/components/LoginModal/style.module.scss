@@ -1,0 +1,54 @@
+.modal {
+    width: 100vw;
+    max-width: 600px;
+    margin-top: 1em;
+    height: 520px;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.modalContent {
+    padding: 0 2em;
+    > h2 {
+        font-size: 1.4em;
+        padding: 0.5em 0 0.1em 0;
+    }
+}
+
+.modalHeader {
+    position: relative;
+    font-size: 1.2em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.closeModal {
+    display: flex;
+    position: absolute;
+    left: 1em;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    padding: 0;
+    border-radius: 100%;
+    > img {
+        height: 50%;
+        width: 50%;
+        margin: auto;
+        transition: all 200ms ease-in-out;
+    }
+    &:active {
+        border: 1px solid black;
+    }
+}
+
+.titleModal {
+    margin-right: auto;
+}
+
+@media(max-width: 400px) {
+    .modal {
+        height: 90vh;
+    }
+}

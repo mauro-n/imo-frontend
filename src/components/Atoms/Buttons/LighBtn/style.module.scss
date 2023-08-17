@@ -1,0 +1,15 @@
+.lightBtn {
+    
+    background-color: transparent;
+    border: 1px solid #f3902d !important;
+
+    &:hover {
+        background-color: #5a5147;
+        border: none !important;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border: 1px solid gray;
+    }
+}

@@ -1,0 +1,14 @@
+.darkBtn {
+    background-color: #f3902d;
+    color: white !important;
+
+    &:hover {
+        background-color: #f3902d;
+        filter: brightness(0.9);
+    }
+
+    &:disabled {
+        filter: grayscale(1);
+        opacity: 0.5;
+    }
+}
