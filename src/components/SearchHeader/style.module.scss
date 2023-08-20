@@ -68,6 +68,13 @@
     }
 }
 
+.err-container {
+    text-align: center;
+    color: red;
+    margin: 0.1em 0 -0.5em 0;
+    padding: 0;
+}
+
 @media (min-width: 993px) {
     .inputContainer {
         background-color: #F2F2F1;
