@@ -1,7 +1,8 @@
 .lightBtn {
     
     background-color: transparent;
-    border: 1px solid #f3902d !important;
+    border: 1px solid #CA3131 !important;
+    transition: background-color 20ms ease-in-out;
 
     &:hover {
         background-color: #5a5147;
