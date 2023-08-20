@@ -1,8 +1,10 @@
 import axios from "axios";
 
-//const BASE_URL = 'http://imofront.com/api';
-//const BASE_URL = 'http://127.0.0.1:8000/api/';
-const BASE_URL = 'https://imoideal.ferramenta.cc/api/';
+const devApiUrl = import.meta.env.VITE_DEV_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const BASE_URL = devApiUrl;
+
 /* This instance has interceptors for updating the auth state
 at every request */
 export const Axios = axios.create({

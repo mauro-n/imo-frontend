@@ -60,10 +60,11 @@
 
 .searchBtn {
     width: 100%;
-    background-color: #F79C43;
+    background-color: #CA3131;
     border: none;
     &:hover {
-        background-color: #f3902d;
+        background-color: #CA3131;
+        filter: brightness(0.9);
     }
 }
 

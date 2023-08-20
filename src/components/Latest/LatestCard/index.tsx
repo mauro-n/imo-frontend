@@ -17,6 +17,7 @@ export const LatestCard = (props: any) => {
     const item: any = props?.data ? props.data : 'Carregando';
     const swiperRef: any = useRef(null);
     const rooms = [room, room2, room3, room4, room5];
+    const loading: boolean = props?.data?.loading ? true : false;
 
     useEffect(() => {
         const swiperContainer = swiperRef.current;
@@ -49,28 +50,43 @@ export const LatestCard = (props: any) => {
     }, []);
 
     return (
-        <div className={style.cardContainer}>
-            <swiper-container init={false} ref={swiperRef} className={style.swiper}>
-                <swiper-slide className={style.slide}>
-                    <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
-                </swiper-slide>
-                <swiper-slide className={style.slide}>
-                    <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
-                </swiper-slide>
-                <swiper-slide className={style.slide}>
-                    <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
-                </swiper-slide>
-                <swiper-slide className={style.slide}>
-                    <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
-                </swiper-slide>
-                <swiper-slide className={style.slide}>
-                    <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
-                </swiper-slide>
-            </swiper-container>
-            <div className={style.label}>
-                <h5>{item.location}</h5>
-                <p>{item.price} R$</p>
-            </div>
-        </div>
+        <>
+            {loading ?
+                <div className={style.cardContainer}>
+                    <swiper-container init={false} ref={swiperRef} className={style.swiper}>
+                        <swiper-slide className={style.slide}>
+                            <div className={`${style['img']} ${style['img-loading']}`}></div>
+                        </swiper-slide>
+                    </swiper-container>
+                    <div className={style.label}>
+                        <h5>Carregando</h5>
+                        <p> --- </p>
+                    </div>
+                </div> :
+                <div className={style.cardContainer}>
+                    <swiper-container init={false} ref={swiperRef} className={style.swiper}>
+                        <swiper-slide className={style.slide}>
+                            <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
+                        </swiper-slide>
+                        <swiper-slide className={style.slide}>
+                            <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
+                        </swiper-slide>
+                        <swiper-slide className={style.slide}>
+                            <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
+                        </swiper-slide>
+                        <swiper-slide className={style.slide}>
+                            <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
+                        </swiper-slide>
+                        <swiper-slide className={style.slide}>
+                            <img src={rooms[rooms.length * Math.random() | 0]} alt="" className={style.img} />
+                        </swiper-slide>
+                    </swiper-container>
+                    <div className={style.label}>
+                        <h5>{item.location}</h5>
+                        <p>{item.price} R$</p>
+                    </div>
+                </div>
+            }
+        </>
     )
 }

@@ -15,12 +15,14 @@
 }
 
 .profile-pic {
-    max-height: 200px;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
     border-radius: 100%;
 }
 
 .profile-name {
-    margin: 0.1em;
+    margin: 0.5em 0 0 0;
     text-transform: capitalize;
 }
 
@@ -48,10 +50,14 @@
     text-align: start;
     display: block;
     color: rgba(0, 0, 0, 0.7);
+    padding: 0 1em;
+    transition: all 50ms ease-in-out;
 
     &:hover {
         cursor: pointer;
         color: black;
+        background-color: #CA3131;
+        color: white;
         font-weight: 300;
     }
 }

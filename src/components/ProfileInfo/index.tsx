@@ -2,18 +2,24 @@ import style from './style.module.scss';
 import { useAuth } from '../../hooks/useAuth';
 import { useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const ProfileInfo = () => {
     const { auth } = useAuth();
+    const user = auth?.user || {};
     const location = useLocation();
+
+    useEffect(() => {
+        console.log(auth.user)
+    }, [])
 
     return (
         <>
             <div className={`${style['profile-header']} flex-column flex-sm-row`}>
                 <div className={style['profile-pic-container']}>
                     <img
-                        src="https://placehold.co/300"
-                        alt="profile pic"
+                        src={user?.urlimg || "https://placehold.co/300"}
+                        alt="Profile Picture"
                         className={style['profile-pic']}
                     />
                     <div className={style['profile-name']}>

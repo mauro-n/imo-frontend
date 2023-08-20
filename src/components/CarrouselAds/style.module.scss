@@ -28,11 +28,12 @@ $pagination-bullet-size: 0.5em;
     align-items: center;
     transition: all 200ms ease-in-out;
     border-radius: 0.2em;
-    background-color: #f3902d;
+    background-color: #CA3131;
+    color: white;
 
     &:active {
         cursor: pointer;
-        background-color: #f3902db0;
+        background-color: #CA3131;
 
         >.arrow {
             transform: scale(1.1);
@@ -64,12 +65,13 @@ $pagination-bullet-size: 0.5em;
 
 @media(min-width: 768px) {
     .btnContainer {
-        background-color: #f3902d26;
+        background-color: #CA3131;
+        opacity: 0.3;
         border-radius: 100%;
         &:hover {
             cursor: pointer;
-            background-color: #f3902db0;
-
+            background-color: #CA3131;
+            opacity: 1;
             >.arrow {
                 transform: scale(1.1);
             }

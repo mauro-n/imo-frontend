@@ -32,7 +32,7 @@ export const Latest = () => {
                         items.slice(0, 2).map((el: any) => {
                             return <LatestCard key={el.id} data={el} />
                         }) :
-                        <div>Carregando</div>
+                        <LatestCard data={{ loading: true }} />
                     }
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={3} className='m-0'>
@@ -40,7 +40,7 @@ export const Latest = () => {
                         items.slice(2, 4).map((el: any) => {
                             return <LatestCard key={el.id} data={el} />
                         }) :
-                        <div>Carregando</div>
+                        <LatestCard data={{ loading: true }} />
                     }
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={3} className='m-0'>
@@ -48,7 +48,7 @@ export const Latest = () => {
                         items.slice(4, 6).map((el: any) => {
                             return <LatestCard key={el.id} data={el} />
                         }) :
-                        <div>Carregando</div>
+                        <LatestCard data={{ loading: true }} />
                     }
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={3} className='m-0'>
@@ -56,7 +56,7 @@ export const Latest = () => {
                         items.slice(6, 8).map((el: any) => {
                             return <LatestCard key={el.id} data={el} />
                         }) :
-                        <div>Carregando</div>
+                        <LatestCard data={{ loading: true }} />
                     }
                 </Col>
             </Row>

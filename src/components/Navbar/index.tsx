@@ -85,7 +85,7 @@ export function NavbarComp() {
                         {auth?.user ?
                             <NavDropdown
                                 title={`Olá, ${auth.user?.nome}`}
-                                className={`${style['profile-info']} ms-sm-2`}
+                                className={`${style['profile-btn']} ms-sm-2`}
                                 align='end'
                             >
                                 <NavDropdown.Item onClick={handleMyAds}>

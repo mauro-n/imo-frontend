@@ -20,7 +20,7 @@ $btnPadding: 10px 15px;
 }
 
 .imo {
-    color: red;
+    color: #fc1818;
 }
 
 .loginMenu {
@@ -37,32 +37,31 @@ $btnPadding: 10px 15px;
 
 .announceBtn {
     padding: $btnPadding;
-    outline: 1px solid #f79d43da;
-    /* outline: 1px solid #35B4C8; */
+    outline: 1px solid #CA3131;
     -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
     box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.05);
     margin: 0 0;
-    transition: background-color 0.10s ease-in;
+    transition: background-color 100ms ease-in;
 
     &:hover {
-        color: black;
-        background-color: #f5cea7da;
+        color: white;
+        background-color: #CA3131;
     }
 }
 
-.profile-info {
+.profile-btn {
     padding: $btnPadding;
-    outline: 1px solid #f79d43da;
+    outline: 1px solid #CA3131;
     -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
     box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.10s ease-in;
+    transition: background-color 100ms ease-in;
     text-align: center;
 
     &:hover {
-        color: black;
-        background-color: #f5cea7da;
+        color: white;
+        background-color: #CA3131;
         cursor: pointer;
     }
 

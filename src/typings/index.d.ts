@@ -3,3 +3,10 @@ namespace Context {
         user: string | undefined,
     }
 }
+
+namespace App {
+    type searchInfo = {
+        categorias: any[],
+        tipos: any[]
+    }
+}

@@ -1,10 +1,36 @@
 import style from './style.module.scss';
-import house from '../../assets/img/house1.png';
+/* Bootstrap */
 import { Form, Row, Button, Col } from 'react-bootstrap';
+/* Hooks */
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useAxios } from '../../hooks/useAxios';
+/* Assets */
+import house from '../../assets/img/house1.png';
 
 export const SearchHeader = () => {
+    const INFO_URL = 'search-info';
+    /* State */
+    const [info, setInfo] = useState<App.searchInfo | undefined>(undefined);
+    /* Hooks */
+    const axios = useAxios();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getSystemInfo();
+    }, []);
+
+    const getSystemInfo = async () => {
+        try {
+            const response = await axios.get(INFO_URL);
+            if (response.status === 200) {
+                setInfo(response.data);
+            }
+        } catch (err: any) {
+            console.log(err);
+        }
+    }
+
     const handleSearch = () => {
         return navigate('/search');
     }
@@ -25,26 +51,34 @@ export const SearchHeader = () => {
                             <Form.Group
                                 as={Col}
                                 xs={6}
-                                md={4}
+                                md={3}
                                 lg={6}
                                 className={style.input}
                             >
-                                <Form.Select defaultValue="Apartamento">
-                                    <option>Apartamento</option>
-                                    <option>Casa</option>
+                                <Form.Select defaultValue="Categorias">
+                                    {info ?
+                                        info.categorias.map((el) => {
+                                            return <option key={el.id} value={el.id}>{el.descricao}</option>
+                                        }) :
+                                        <option>Carregando..</option>
+                                    }
                                 </Form.Select>
                             </Form.Group>
 
                             <Form.Group
                                 as={Col}
                                 xs={6}
-                                md={4}
+                                md={3}
                                 lg={6}
                                 className={style.input}
                             >
                                 <Form.Select defaultValue="Para Vender">
-                                    <option>Para Vender</option>
-                                    <option>Para Alugar</option>
+                                    {info ?
+                                        info.tipos.map((el) => {
+                                            return <option key={el.id} value={el.id}>{el.descricao}</option>
+                                        }) :
+                                        <option>Carregando</option>
+                                    }
                                 </Form.Select>
                             </Form.Group>
 
@@ -54,37 +88,11 @@ export const SearchHeader = () => {
                                 lg={{ order: 'first', span: 12 }}
                                 className={style.input}
                             >
-                                <Form.Select defaultValue="Aldeota">
-                                    <option>Selecione um Bairro</option>
-                                    <option>Beira Mar</option>
-                                </Form.Select>
-                            </Form.Group>
-                        </Row>
-                        <Row className='w-100 px-2'>
-                            <Form.Group
-                                as={Col}
-                                lg={6}
-                                className={`${style.input} d-none d-lg-block`}
-                            >
-                                <Form.Select defaultValue="Aldeota">
-                                    <option>Empreendimento</option>
-                                    <option>Sim</option>
-                                    <option>Não</option>
-                                </Form.Select>
-                            </Form.Group>
+                                <Form.Control type='text' placeholder='Local' />
 
-                            <Form.Group
-                                as={Col}
-                                lg={6}
-                                className={`${style.input} d-none d-lg-block`}
-                            >
-                                <Form.Select defaultValue="Aldeota">
-                                    <option>Preço</option>
-                                    <option>+xxxxx</option>
-                                    <option>+xxxxx</option>
-                                </Form.Select>
                             </Form.Group>
                         </Row>
+
                         <Row className='w-100 mb-4'>
                             <Col xs={12}>
                                 <Button className={style.searchBtn} onClick={handleSearch}>
