@@ -1,0 +1,84 @@
+$pagination-bullet-size: 0.5em;
+
+.swiperContainer {
+    margin: 2em 0 2em 0;
+}
+
+.swiper {
+    height: 250px;
+}
+
+.btnCol {
+    display: flex;
+    place-items: center;
+    padding: 1em;
+    max-height: 4em;
+    align-self: center;
+    user-select: none;
+}
+
+.btnContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+    border-radius: 0.2em;
+    background-color: #CA3131;
+    color: white;
+
+    &:active {
+        cursor: pointer;
+        background-color: #CA3131;
+
+        >.arrow {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.btn {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+    font-weight: 200;
+    color: white;
+    outline: none;
+
+    &:hover {
+        border: none;
+        outline: none;
+    }
+}
+
+.arrow {
+    display: flex;
+    color: black;
+    font-size: 3em;
+    padding-bottom: 0.2em;
+}
+
+@media(min-width: 768px) {
+    .btnContainer {
+        background-color: #CA3131;
+        opacity: 0.3;
+        border-radius: 100%;
+        &:hover {
+            cursor: pointer;
+            background-color: #CA3131;
+            opacity: 1;
+            >.arrow {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .btn {
+        color: black;
+    }
+}
