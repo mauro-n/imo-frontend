@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap"
-import { NavbarComp } from "../../components/Navbar"
-import { ProfileSideBar } from "../../components/ProfileSideBar"
+import { NavbarComp } from "../../components/Organisms/Navbar"
+import { ProfileSideBar } from "../../components/Organisms/ProfileSideBar"
 import { Outlet } from "react-router-dom"
 
 export const ProfileTemplate = () => {
