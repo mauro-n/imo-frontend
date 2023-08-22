@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { StandaloneSearchBox } from '@react-google-maps/api';
 import { useApp } from '../../../hooks/useApp';
 import { useNavigate } from 'react-router-dom';
-import { axiosBasic } from '../../../api/axios';
+import { useAxios } from '../../../hooks/useAxios';
 
 export const SearchForm = () => {
     const SEARCH_URL = 'search';
@@ -21,6 +21,7 @@ export const SearchForm = () => {
     /* Hooks */
     const { setApp } = useApp();
     const navigate = useNavigate();
+    const axiosBasic = useAxios();
 
     useEffect(() => {
         getSystemInfo();
