@@ -52,7 +52,6 @@ export const SearchForm = () => {
     const onPlacesChanged = () => {
         const places = searchBox?.getPlaces();
         if (places && places[0].types) {
-            console.log(places);
             setErrMsg('');
             setAddressText(places[0].name);
             const type = places[0].types[0];
@@ -79,7 +78,8 @@ export const SearchForm = () => {
         }
     }
 
-    const handleSearch = async () => {
+    const handleSearch = async (e: any) => {
+        e.preventDefault();
         if (!addressText || !addressType) {
             setErrMsg(`Por favor selecione um local válido,
             locais válidos são Bairros, Cidades, Ruas ou Estados`);
@@ -92,9 +92,14 @@ export const SearchForm = () => {
         data.append('addressType', addressType);
         data.append('addressText', addressText);
 
+        console.log(category, type, addressType, addressText);
+
         try {
             const response = await axiosBasic.post(SEARCH_URL, data);
             if (response.status === 200) {
+                localStorage.removeItem('lastSearch');
+                localStorage.setItem('lastSearch', JSON.stringify(response.data));
+                localStorage.setItem('lastSearchParams', JSON.stringify(info));
                 if (setApp) setApp({ searchResults: response.data });
                 return navigate('/search');
             }
@@ -177,7 +182,12 @@ export const SearchForm = () => {
 
                     <Row className='w-100 mb-4'>
                         <Col xs={12}>
-                            <Button className={style.searchBtn} onClick={handleSearch}>
+                            <Button
+                                className={style.searchBtn}
+                                onClick={handleSearch}
+                                onSubmit={(e) => handleSearch(e)}
+                                type='submit'
+                            >
                                 Procurar
                             </Button>
                         </Col>

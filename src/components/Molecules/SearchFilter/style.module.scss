@@ -1,5 +1,82 @@
 .searchFilter-container {
     border: 1px solid red;
-    height: 100%;
+    height: auto;
     text-align: center;
+    background-color: #DC3545;
+    color: white;
+    padding: 0 1em;
+    border-radius: 0.5em;
+}
+
+.form-container {
+    height: 555px;
+    transition: height 500ms ease-in-out;
+    overflow: hidden;
+}
+
+.hidden {
+    height: 0px;
+}
+
+.form {
+    text-align: start;
+}
+
+.form-group {
+    padding: 1em 0 1em 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+
+    &:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.30);
+    }
+
+    & > label {
+        margin: 0 0 0.5em 0;
+    }
+}
+
+.title {
+    margin: 0;
+    padding: 1em;
+    font-size: 1em;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.input {
+    height: 2em;
+    padding-left: 80px;
+}
+
+.select-input-container{
+    display: flex;
+    position: relative;
+    margin-bottom: 0.5em;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    > label {
+        position: absolute;
+        color: black;
+        height: 2.2em;
+        line-height: 2.25em;
+        padding-left: 0.5em;
+        width: 70px;
+        background-color: rgba(128, 128, 128, 0.066);
+        font-size: 0.9em;
+    }
+}
+
+.input-select {
+    height: 2em;
+    padding: 0;
+    padding-left: 0.5em;
+}
+
+.search-btn {
+    margin: 1em 0;
+    background-color: transparent;
+    border: 1px solid white;
 }
