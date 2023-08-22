@@ -92,8 +92,6 @@ export const SearchForm = () => {
         data.append('addressType', addressType);
         data.append('addressText', addressText);
 
-        console.log(category, type, addressType, addressText);
-
         try {
             const response = await axiosBasic.post(SEARCH_URL, data);
             if (response.status === 200) {
