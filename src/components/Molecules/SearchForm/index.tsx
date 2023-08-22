@@ -161,7 +161,7 @@ export const SearchForm = () => {
                         <Form.Group
                             as={Col}
                             xs
-                            lg={{ order: 'first', span: 12 }}
+                            lg={{ span: 12 }}
                             className={style.input}
                         >
                             <StandaloneSearchBox
