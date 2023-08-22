@@ -6,7 +6,7 @@ export const useAxios = () => {
     const verifyAuth = useVerifyAuth();
 
     useEffect(() => {
-        const responseInterceptor = Axios.interceptors.request.use(
+        const requestInterceptor = Axios.interceptors.request.use(
             (response) => {
                 verifyAuth();
                 return response;
@@ -15,8 +15,7 @@ export const useAxios = () => {
             }
         );
 
-
-        return () => Axios.interceptors.request.eject(responseInterceptor);
+        return () => Axios.interceptors.request.eject(requestInterceptor);
     }, []);
 
     return Axios;
