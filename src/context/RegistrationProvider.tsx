@@ -4,10 +4,13 @@ export const RegistrationContext = createContext({});
 export const RegistrationProvider = ({children}: any) => {
     const [registration, setRegistration] = useState({
         phone: '',
-        name: 'test',
+        phoneRef: undefined,
+        name: '',
         nameRef: undefined,
         email: '',
+        emailRef: undefined,
         pwd: '',
+        pwdRef: undefined,
         validPhone: false,
         validName: false,
         validEmail: false,

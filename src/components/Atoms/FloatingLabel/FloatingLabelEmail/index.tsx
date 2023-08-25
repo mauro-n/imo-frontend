@@ -1,5 +1,6 @@
 import style from '../floating.module.scss';
-import { useState, useRef } from 'react';
+/* Hooks */
+import { useState, useRef, useEffect } from 'react';
 import { useRegistration } from '../../../../hooks/useRegistration';
 
 export const FloatingLabelEmail = (props: any) => {
@@ -8,14 +9,24 @@ export const FloatingLabelEmail = (props: any) => {
     const label: string = props?.label;
     const prepend: string = props?.prepend;
     const disabled: boolean = props?.disabled;
-    
     /* State */
     const { registration, setRegistration } = useRegistration();
     const { setErrMsg } = registration;
     const { validEmail } = registration;
     const [inputValue, setInputValue] = useState('');
     const [isFocus, setIsFocus] = useState(false);
+    /* Refs */
     const inputRef: any = useRef();
+
+    /* Loads the ref into context */
+    useEffect(() => {
+        setRegistration((prev: any) => {
+            return {
+                ...prev,
+                emailRef: inputRef
+            }
+        })
+    }, [])
 
     const handleChange = () => {
         const curValue = inputRef.current?.value;
@@ -25,7 +36,7 @@ export const FloatingLabelEmail = (props: any) => {
             return {
                 ...prev,
                 validEmail: valid,
-                email: curValue,
+                email: curValue
             };
         });
 
@@ -36,6 +47,7 @@ export const FloatingLabelEmail = (props: any) => {
     const handleFocus = () => {
         setIsFocus(true)
         setErrMsg([]);
+        return;
     }
 
     return (

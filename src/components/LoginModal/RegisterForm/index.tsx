@@ -33,6 +33,8 @@ export const RegisterForm = (props: any) => {
     /* Refs */
     const errMsgRef: any = useRef();
     const { nameRef } = registration;
+    const { emailRef } = registration;
+    const { phoneRef } = registration;
     /* Context */
     const { validName, validEmail, validPwd, validPhone } = registration;
     const { email, name, phone, pwd } = registration;
@@ -60,6 +62,8 @@ export const RegisterForm = (props: any) => {
     }, [isRegistering]);
 
     const handleSubmit = async () => {
+        if (!phone) return phoneRef.current.focus();
+        if (!email) return emailRef.current.focus();
         if (!isRegistering) return setIsRegistering(true);
         if (!allValid) return;
 

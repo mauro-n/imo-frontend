@@ -1,23 +1,36 @@
-import { useRegistration } from '../../../../hooks/useRegistration';
 import style from '../floating.module.scss';
-import { useState, useRef } from 'react';
+/* Hooks */
+import { useRegistration } from '../../../../hooks/useRegistration';
+import { useState, useRef, useEffect } from 'react';
 
 export const FloatingLabelPhone = (props: any) => {
+    /* Valid phone number: */
     const PHONE_REGEX = /^[0-9]+$/;
     /* Extracting props */
     const placeholder: string = props?.placeholder;
     const label: string = props?.label;
     const prepend: string = props?.prepend;
     const disabled: boolean = props?.disabled;
-    
     /* State */
     const { registration, setRegistration } = useRegistration();
     const { setErrMsg } = registration;
     const isValid = registration.validPhone;
     const [inputValue, setInputValue] = useState('');
     const [isFocus, setIsFocus] = useState(false);
+    /* Ref */
     const inputRef: any = useRef();
 
+    /* Loads the ref into context */
+    useEffect(() => {
+        setRegistration((prev: any) => {
+            return {
+                ...prev,
+                phoneRef: inputRef
+            }
+        })
+    }, [])
+
+    /* Implements the validation, should also format (todo) */
     const handleChange = () => {
         const curValue = inputRef.current?.value;
         const valid = PHONE_REGEX.test(curValue);
@@ -37,6 +50,7 @@ export const FloatingLabelPhone = (props: any) => {
     const handleFocus = () => {
         setIsFocus(true);
         setErrMsg([]);
+        return;
     }
 
     return (
