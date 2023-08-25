@@ -19,7 +19,7 @@ export const LoginForm = (props: any) => {
     const setIsModalOpen = props.setIsModalOpen;
     /* Hooks */
     const location = useLocation();
-    const from = location.state?.location?.pathname || '/';
+    const from = location.state?.location?.pathname || '/profile/info';
     const navigate = useNavigate();
     const axios = useAxios();
     const { setAuth } = useAuth();

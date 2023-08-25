@@ -1,7 +1,9 @@
 import style from '../FormStyles/style.module.scss';
+/* Hooks */
 import { Axios } from '../../../api/axios';
 import { useEffect, useRef, useState } from 'react';
 import { useRegistration } from '../../../hooks/useRegistration';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 /* Bootstrap */
 import { Container } from 'react-bootstrap';
@@ -23,6 +25,7 @@ export const RegisterForm = (props: any) => {
     /* Hooks */
     const { registration, setRegistration } = useRegistration();
     const { setAuth } = useAuth();
+    const navigate = useNavigate();
     /* State */
     const [isRegistering, setIsRegistering] = useState(false);
     const [allValid, setAllValid] = useState(false);
@@ -72,6 +75,8 @@ export const RegisterForm = (props: any) => {
             if (response.status === 200) {
                 setAuth({user: response.data});
                 setIsModalOpen(false);
+                navigate('/profile/info');
+                return;
             }
         } catch (err: any) {
             if (!err?.response) {
