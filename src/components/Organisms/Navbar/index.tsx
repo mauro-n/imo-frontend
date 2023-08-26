@@ -32,6 +32,7 @@ export function NavbarComp() {
 
     const handleCreateAd = () => {
         if (!auth?.user) return handleToggleModal();
+        return navigate('/profile/create-ad');
     }
 
     const handleLogout = async () => {
