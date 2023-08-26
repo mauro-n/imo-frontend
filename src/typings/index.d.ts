@@ -6,8 +6,18 @@ namespace Context {
 
 namespace App {
     type searchInfo = {
-        categorias: any[],
-        tipos: any[]
+        categorias: category[],
+        tipos: types[]
+    }
+
+    type category = {
+        id: string,
+        descricao: string
+    }
+
+    type types = {
+        id: string,
+        descricao: string
     }
 
     type app = {

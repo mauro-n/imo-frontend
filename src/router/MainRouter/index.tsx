@@ -9,6 +9,7 @@ import { ProfileInfo } from "../../components/Organisms/ProfileInfo";
 import { ProfilePage } from "../../pages/ProfilePage";
 import { ProfileDetails } from "../../components/Molecules/ProfileDetails";
 import { AppProvider } from "../../context/AppProvider";
+import { CreateAd } from "../../components/Organisms/CreateAd";
 
 export const MainRouter = () => {
     return (
@@ -24,9 +25,9 @@ export const MainRouter = () => {
                                 <Route path="info" element={<ProfileInfo />}>
                                     <Route path="details" element={<ProfileDetails />} />
                                 </Route>
+                                <Route path="create-ad" element={<CreateAd />} />
                             </Route>
                         </Route>
-
                     </Routes>
                 </AuthProvider>
             </AppProvider>
