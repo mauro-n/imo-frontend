@@ -1,0 +1,48 @@
+$title-size: 0.9em;
+$size: 17px;
+
+.inputHelp {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin-left: 5px;
+    border: 1px solid red;
+    border-radius: 100%;
+    width: $size;
+    height: $size;
+    line-height: $title-size;
+    background-color: #ae2a2a;
+    color: white;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.inputHelp-title {
+    font-size: $title-size;
+}
+
+.inputHelp-body {
+    position: absolute;
+    top: 20px;
+    left: -130px;
+    display: none;
+    background-color: #CA3131;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    text-align: start;
+    color: white;
+    width: 260px;
+    padding: 0.5em;
+    &:hover {
+        cursor: default;
+    }
+}
+
+.drop-end {
+    left: 0px
+}
+
+.body--hover {
+    display: block;
+}
