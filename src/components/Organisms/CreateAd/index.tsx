@@ -2,24 +2,32 @@ import style from './style.module.scss';
 /* Bootstrap */
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 /* Hooks */
-import { useState, useEffect, useRef } from 'react';
 import { axiosBasic } from '../../../api/axios';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+/* Components */
 import { InputHelp } from '../../Atoms/InputHelp';
 import { ImgInputRenderer } from '../../Molecules/ImgInputRenderer';
 
 export const CreateAd = () => {
+    const CREATE_ANNOUNCE_ULR = 'announce';
     const SYSINFO_URL = 'search';
+    const navigate = useNavigate();
     /*--------------------- State ---------------------*/
     const sysInfoIniState: App.searchInfo = { categorias: [], tipos: [] };
     const [sysInfo, setSysInfo] = useState<App.searchInfo>(sysInfoIniState);
-    const [errMsg, setErrMsg] = useState('');
+    const [errMsg, setErrMsg] = useState<string | string[]>('');
+
+    /*--------------------- State / Category / Type ---------------------*/
+    const [category, setCategory] = useState('1');
+    const [type, setType] = useState('1');
 
     /*--------------------- State / Title ---------------------*/
     const titleLimit = 70;
     const [title, setTitle] = useState('');
     const [titleFocus, setTitleFocus] = useState(false);
     const [validTitle, setValidTitle] = useState(false);
-    const titleRef: any = useRef();
+    const titleRef = useRef<HTMLInputElement>(null);
     const handleTitleChange = (e: string) => {
         setTitle(e);
         if (e.length > 0) return setValidTitle(true);
@@ -102,15 +110,10 @@ export const CreateAd = () => {
         return;
     }, [area, price])
 
-    useEffect(() => {
-        getSystemInfo();
-        titleRef.current.focus();
-    }, []);
-
     /*--------------------- State / Rooms / Bathrooms / Parking ---------------------*/
-    const [numRooms, setNumRooms] = useState('');
-    const [numBath, setNumBath] = useState('');
-    const [numParking, setNumParking] = useState('');
+    const [numRooms, setNumRooms] = useState('1');
+    const [numBath, setNumBath] = useState('0');
+    const [numParking, setNumParking] = useState('0');
 
     /*--------------------- State / Description ---------------------*/
     const decriptionLimit = 300;
@@ -133,6 +136,7 @@ export const CreateAd = () => {
     const maxImgNum = 10;
     const [images, setImages] = useState<any[]>([image1]);
     const [canAdd, setCanAdd] = useState(false);
+    const imageSectionRef: any = useRef();
 
     useEffect(() => {
         if (images.length == 0) {
@@ -162,6 +166,60 @@ export const CreateAd = () => {
         });
     }
 
+    /*--------------------- State / Checkboxes ---------------------*/
+    const [hasPool, setHasPool] = useState(false);
+    const [hasAreaLz, setHasAreaLz] = useState(false);
+    const [hasAreaExt, setHasAreaExt] = useState(false);
+
+    /*------------------------------------------*/
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        setErrMsg('');
+
+        if (!title || !validTitle) { if (titleRef.current) return titleRef.current.focus(); };
+        if (!price || !validPrice) { if (priceRef.current) return priceRef.current.focus(); };
+        if (!area || !validArea) { if (areaRef.current) return areaRef.current.focus(); };
+        if (!description || !validDescription) { if (descriptionRef.current) return descriptionRef.current.focus(); };
+        if (!images || (images.length === 1 && !images[images.length - 1].file)) {
+            if (imageSectionRef.current) imageSectionRef.current.scrollIntoView();
+            return;
+        };
+
+        const data = new FormData();
+        data.append('categoria', category);
+        data.append('tipo', type);
+        data.append('title', title);
+        data.append('descricao', description);
+        data.append('address', description);
+        for (let img of images) {
+            if (!img.file) continue;
+            data.append('imagens[]', img.file);
+        }
+        data.append('price', price);
+        data.append('quartos', numRooms);
+        data.append('banheiros', numBath);
+        data.append('metros', area);
+        data.append('vagas', numParking);
+        data.append('areaext', hasAreaExt ? 'true' : 'false');
+        data.append('piscina', hasPool ? 'true' : 'false');
+        data.append('arealzr', hasAreaLz ? 'true' : 'false');
+
+        try {
+            const response = await axiosBasic.post(CREATE_ANNOUNCE_ULR, data);
+            const postId = response.data['success_message'];
+            return navigate('/posts', { replace: true, state: { postId: postId } });
+        } catch (err: any) {
+            console.log(err);
+            if (!err.response) return setErrMsg('Sem serviço');
+            if (err.response?.data['error_message']) return setErrMsg(err.response.data['error_message']);
+            setErrMsg(err.response.data);
+            return;
+        }
+    }
+
+    /*--------------------- BOOT ---------------------*/
+
     const getSystemInfo = async () => {
         try {
             const response = await axiosBasic.get(SYSINFO_URL);
@@ -173,13 +231,14 @@ export const CreateAd = () => {
         }
     }
 
+    useEffect(() => {
+        getSystemInfo();
+        if (titleRef.current) return titleRef.current.focus();
+    }, []);
+
     return (
         <Container className={style['createAd-container']}>
             <h2 className="h3 text-center">Publique seu Anúncio</h2>
-            {errMsg ?
-                <p className='text-danger'>{errMsg}*</p>
-                : <></>
-            }
             <p className='mb-4 mb-sm-0'>
                 Preencha os campos abaixo para publicar o seu anúncio, qualquer dúvida cheque
                 os sinais de interrogação.
@@ -224,7 +283,7 @@ export const CreateAd = () => {
                 <Row>
                     <Form.Group as={Col} lg={6} className='mb-3 mb-sm-0'>
                         <Form.Label>Selecione uma das categorias abaixo:</Form.Label>
-                        <Form.Select>
+                        <Form.Select onChange={(e) => setCategory(e.target.value)}>
                             {sysInfo?.categorias.length > 0 ?
                                 sysInfo.categorias.map((cat) => {
                                     return (
@@ -237,7 +296,7 @@ export const CreateAd = () => {
                     </Form.Group>
                     <Form.Group as={Col} lg={6} className='mb-3 mb-sm-0'>
                         <Form.Label>Selecione o tipo do imóvel:</Form.Label>
-                        <Form.Select>
+                        <Form.Select onChange={(e) => setType(e.target.value)}>
                             {sysInfo?.tipos.length > 0 ?
                                 sysInfo.tipos.map((type) => {
                                     return (
@@ -364,9 +423,11 @@ export const CreateAd = () => {
                         }
                     </Form.Group>
                     {/* INPUT IMAGES */}
-                    <h4 className='mt-4 h4'>Fotos do imóvel</h4>
+                    <h4 className='mt-4 h4' ref={imageSectionRef} >
+                        Fotos do imóvel
+                    </h4>
                     <hr />
-                    <Form.Group as={Col} xs={12} sm={6} className='mt-4'>
+                    <Form.Group as={Col} xs={12} sm={6} className='mt-4' >
                         <ImgInputRenderer source={images} setSource={setImages} />
                         <div className='text-center mt-3'>
                             <Button
@@ -399,16 +460,19 @@ export const CreateAd = () => {
                             className={style['checkbox']}
                             type='checkbox'
                             label="Piscina"
+                            onClick={(e) => setHasPool((e.target as HTMLInputElement).checked)}
                         />
                         <Form.Check
                             className={style['checkbox']}
                             type='checkbox'
                             label="Área de Lazer"
+                            onClick={(e) => setHasAreaLz((e.target as HTMLInputElement).checked)}
                         />
                         <Form.Check
                             className={style['checkbox']}
                             type='checkbox'
                             label="Área externa"
+                            onClick={(e) => setHasAreaExt((e.target as HTMLInputElement).checked)}
                         />
                     </Row>
                     <Row className='mt-5'>
@@ -420,11 +484,23 @@ export const CreateAd = () => {
                 </Container>
 
                 <div className={style['submit-btn-container']}>
-                    <Button className={style['submit-btn']}>
+                    <Button
+                        className={style['submit-btn']}
+                        onClick={(e) => handleSubmit(e)}
+                    >
                         Continuar
                     </Button>
                 </div>
+                {errMsg && typeof (errMsg) === 'string' ?
+                    <p className='text-danger d-block text-center mt-3'>{errMsg}*</p>
+                    : <></>
+                }
+                {errMsg && Array.isArray(errMsg) ?
+                    errMsg.map((err) => {
+                        return <p key={err} className='text-danger d-block text-center mt-3'>{err}*</p>
+                    }) : <></>
+                }
             </Form>
-        </Container>
+        </Container >
     )
 }
