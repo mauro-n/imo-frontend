@@ -29,6 +29,13 @@ namespace App {
         setApp: React.Dispatch<SetStateAction<App.app>> | undefined
     }
 
+    type user = {
+        email: string,
+        img: string,
+        nome: string,
+        tel: string
+    }
+
     type house = {
         address: string,
         areaext: boolean,
@@ -46,6 +53,7 @@ namespace App {
         price: string,
         quartos: string,
         title: string,
-        vagas: string
+        vagas: string,
+        user: App.user
     }
 }

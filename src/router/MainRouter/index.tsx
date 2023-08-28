@@ -10,6 +10,7 @@ import { ProfilePage } from "../../pages/ProfilePage";
 import { ProfileDetails } from "../../components/Molecules/ProfileDetails";
 import { AppProvider } from "../../context/AppProvider";
 import { CreateAd } from "../../components/Organisms/CreateAd";
+import { PostPage } from "../../pages/PostPage";
 
 export const MainRouter = () => {
     return (
@@ -26,6 +27,9 @@ export const MainRouter = () => {
                                     <Route path="details" element={<ProfileDetails />} />
                                 </Route>
                                 <Route path="create-ad" element={<CreateAd />} />
+                            </Route>
+                            <Route path="/posts">
+                                <Route path="see-post" element={<PostPage />} />
                             </Route>
                         </Route>
                     </Routes>

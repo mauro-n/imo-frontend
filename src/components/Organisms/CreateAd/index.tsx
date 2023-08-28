@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 /* Components */
 import { InputHelp } from '../../Atoms/InputHelp';
 import { ImgInputRenderer } from '../../Molecules/ImgInputRenderer';
+import { StandaloneSearchBox } from '@react-google-maps/api';
 
 export const CreateAd = () => {
     const CREATE_ANNOUNCE_ULR = 'announce';
@@ -17,6 +18,10 @@ export const CreateAd = () => {
     const sysInfoIniState: App.searchInfo = { categorias: [], tipos: [] };
     const [sysInfo, setSysInfo] = useState<App.searchInfo>(sysInfoIniState);
     const [errMsg, setErrMsg] = useState<string | string[]>('');
+
+    const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
+    //const [addressType, setAddressType] = useState('');
+    const [address, setAddress] = useState<string | undefined>('');
 
     /*--------------------- State / Category / Type ---------------------*/
     const [category, setCategory] = useState('1');
@@ -173,6 +178,39 @@ export const CreateAd = () => {
 
     /*------------------------------------------*/
 
+    const onLoadSearch = (ref: google.maps.places.SearchBox) => {
+        setSearchBox(ref);
+    }
+
+    const onPlacesChanged = () => {
+        const places = searchBox?.getPlaces();
+        if (places && places[0].types) {
+            setErrMsg('');
+            setAddress(places[0].name);
+            //const type = places[0].types[0];
+            /* switch (type) {
+                case "route":
+                    setAddressType('1')
+                    break;
+                case "locality":
+                    setAddressType('2');
+                    break;
+                case "sublocality":
+                    setAddressType('2');
+                    break;
+                case "administrative_area_level_2":
+                    setAddressType('3');
+                    break;
+                case "administrative_area_level_1":
+                    setAddressType('4');
+                    break;
+                default:
+                    break;
+            } */
+            return;
+        }
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setErrMsg('');
@@ -185,13 +223,17 @@ export const CreateAd = () => {
             if (imageSectionRef.current) imageSectionRef.current.scrollIntoView();
             return;
         };
+        if (!address) {
+            setErrMsg('Insira um endereço válido');
+            return;
+        };
 
         const data = new FormData();
         data.append('categoria', category);
         data.append('tipo', type);
         data.append('title', title);
         data.append('descricao', description);
-        data.append('address', description);
+        data.append('address', address);
         for (let img of images) {
             if (!img.file) continue;
             data.append('imagens[]', img.file);
@@ -208,7 +250,7 @@ export const CreateAd = () => {
         try {
             const response = await axiosBasic.post(CREATE_ANNOUNCE_ULR, data);
             const postId = response.data['success_message'];
-            return navigate('/posts', { replace: true, state: { postId: postId } });
+            return navigate('/posts/see-post', { replace: true, state: { postId: postId } });
         } catch (err: any) {
             console.log(err);
             if (!err.response) return setErrMsg('Sem serviço');
@@ -439,7 +481,7 @@ export const CreateAd = () => {
                             </Button>
                         </div>
                     </Form.Group>
-                    <Col xs={12} sm={6} className={`${style['photos-help']} mt-4`}>
+                    <Col xs={12} sm={6} className={`${style['photos-help']} mt-5 mt-sm-0`}>
                         <h4 className='h5'>Ajuda com imagens</h4>
                         <ul className='text-start'>
                             <li>Você pode adicionar até 10 imagens do seu imóvel</li>
@@ -452,7 +494,25 @@ export const CreateAd = () => {
                     </Col>
                 </Row>
 
-                <h4 className='mt-4 h4'>Características do Imóvel</h4>
+                <h4 className='mt-4 h4' ref={imageSectionRef} >
+                    Localização
+                </h4>
+
+                <Row>
+                    <Form.Group as={Col}>
+                        <Form.Label>Endereço do imóvel</Form.Label>
+                        <hr />
+                        <StandaloneSearchBox
+                            onLoad={onLoadSearch}
+                            onPlacesChanged={onPlacesChanged}
+                        >
+                            <Form.Control type='text' placeholder='Local' />
+                        </StandaloneSearchBox>
+                    </Form.Group>
+                </Row>
+                
+
+                <h4 className='mt-5 h4'>Características do Imóvel</h4>
                 <hr />
                 <Container>
                     <Row className={`${style['checkboxes-container']} mt-4`}>

@@ -38,11 +38,10 @@ export function NavbarComp() {
     const handleLogout = async () => {
         try {
             const response = await axios.get('auth/logout');
-            if (response?.status === 200) {
-                setAuth({ user: undefined });
-            }
+            setAuth({ user: null });
+            if (response) return;
         } catch (err) {
-            setAuth({ user: undefined });
+            setAuth({ user: null });
         }
     }
 
