@@ -15,12 +15,22 @@ export const LoginModal = (props: any) => {
     const setIsModalOpen = props.modalCtrl;
     const [loginMode, setLoginMode] = useState(false);
 
+    const customModal = {
+        overlay: {
+            zIndex: 1000,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            display: 'flex',
+            justifyContent: 'center',
+        }
+    }
+
     return (
         <RegistrationProvider>
             <ReactModal
                 isOpen={showModal}
                 className={style.modal}
                 onRequestClose={() => setIsModalOpen(false)}
+                style={customModal}
                 ariaHideApp={false}
             >
                 <header className={style.modalHeader}>
