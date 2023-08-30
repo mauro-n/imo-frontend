@@ -2,7 +2,7 @@ import { axiosBasic } from '../../api/axios';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom"
 import { NavbarComp } from "../../components/Organisms/Navbar"
-import { Post } from '../../components/Molecules/Post';
+import { Post } from '../../components/Organisms/Post';
 import { Footer } from '../../components/Organisms/Footer';
 
 export const PostPageTemplate = () => {

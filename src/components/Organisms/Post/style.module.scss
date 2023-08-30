@@ -69,6 +69,7 @@ hr {
     border: none;
     border-radius: 0.5em;
     height: 40px;
+
     &:hover {
         filter: brightness(0.9);
     }
@@ -78,6 +79,7 @@ hr {
     background-color: transparent;
     color: #BB2D3B;
     border: 1px solid #BB2D3B;
+
     &:hover {
         background-color: #BB2D3B;
         color: white;
@@ -127,4 +129,27 @@ hr {
     border: 2px solid rgb(173, 172, 172);
     border-radius: 0.5em;
     min-height: 400px;
+}
+
+@media (max-width: 991px) {
+    .swiper-img {
+        width: 600px;
+        height: 310px;
+        object-fit: cover;
+    }
+}
+@media (max-width: 550px) {
+    .swiper-img {
+        width: 500px;
+        height: 300px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 400px) {
+    .swiper-img {
+        width: 400px;
+        height: 300px;
+        object-fit: cover;
+    }
 }

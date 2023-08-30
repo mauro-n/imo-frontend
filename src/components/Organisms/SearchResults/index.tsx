@@ -1,7 +1,7 @@
 import style from './style.module.scss';
 import { useApp } from '../../../hooks/useApp';
 import { useEffect, useState } from 'react';
-import { SearchResultCard } from '../../Molecules/SearchResultCard';
+import { PostCard } from '../../Molecules/PostCard';
 
 export const SearchResults = () => {
     const { app } = useApp();
@@ -18,11 +18,11 @@ export const SearchResults = () => {
         <div className={style['searchResults-container']}>
             {app.searchResults.length > 0 ?
                 app.searchResults.map((house) => {
-                    return <SearchResultCard key={house.codigo} house={house} />
+                    return <PostCard key={house.codigo} house={house} />
                 }) :
                 lastSearch.length > 0 ?
                     lastSearch.map((house: App.house) => {
-                        return <SearchResultCard key={house.codigo} house={house} />
+                        return <PostCard key={house.codigo} house={house} />
                     }) :
                     <>
                         <p className='text-center mt-3 mb-0'>Sem resultados para sua busca</p>

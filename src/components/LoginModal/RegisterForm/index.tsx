@@ -77,7 +77,7 @@ export const RegisterForm = (props: any) => {
         try {
             const response = await Axios.post(REGISTER_URL, params);
             if (response.status === 200) {
-                setAuth({user: response.data});
+                setAuth({ user: response.data });
                 setIsModalOpen(false);
                 navigate('/profile/info');
                 return;

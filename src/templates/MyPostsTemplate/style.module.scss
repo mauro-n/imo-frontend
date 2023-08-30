@@ -1,0 +1,18 @@
+.searchResults-container {
+    margin-top: 1em;
+    border-top: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+.create-btn {
+    background-color: transparent;
+    border: 1px solid #DC3545;
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 995px;
+
+    &:hover {
+        background-color: #DC3545;
+        color: white;
+    }
+}

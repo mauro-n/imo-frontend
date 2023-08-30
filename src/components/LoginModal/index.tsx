@@ -8,27 +8,18 @@ import ReactModal from "react-modal"
 import { LoginForm } from './LoginForm';
 /* Assets */
 import times from '../../assets/icon/times.svg';
+import { Heading } from '../Atoms/Heading';
 
 export const LoginModal = (props: any) => {
     const showModal = props.showModal;
     const setIsModalOpen = props.modalCtrl;
     const [loginMode, setLoginMode] = useState(false);
 
-    const customStyles = {
-        overlay: {
-            zIndex: 1000,
-            backgroundColor: 'rgba(0,0,0,0.6)',
-            display: 'flex',
-            justifyContent: 'center',
-        }
-    };
-
     return (
         <RegistrationProvider>
             <ReactModal
                 isOpen={showModal}
                 className={style.modal}
-                style={customStyles}
                 onRequestClose={() => setIsModalOpen(false)}
                 ariaHideApp={false}
             >
@@ -42,9 +33,9 @@ export const LoginModal = (props: any) => {
                     <div className={style.titleModal}>Entrar ou cadastrar</div>
                 </header>
                 <div className={style.modalContent}>
-                    <h2 className='text-center text-sm-start'>
+                    <Heading as='h2' size='md' center={false}>
                         Bem vindo ao ImoIdeal
-                    </h2>
+                    </Heading>
                     {loginMode ?
                         <LoginForm
                             setLoginMode={setLoginMode}

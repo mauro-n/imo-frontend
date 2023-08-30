@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { LatestCard } from '../../Molecules/LatestCard';
 import { SeeMoreBtn } from '../../Atoms/SeeMoreBtn';
+import { Heading } from '../../Atoms/Heading';
 
 export const Latest = () => {
     const LATEST_URL = 'https://raw.githubusercontent.com/mauro-n/api-mauro-n/main/imoIdeal-mock/getAds.json';
@@ -25,8 +26,8 @@ export const Latest = () => {
 
     return (
         <Container className={style.latestContainer}>
-            <h2 className='h3'>Anúncios recentes de Casas:</h2>
-            <Row>
+            <Heading as='h2' size='lg'>Anúncios recentes</Heading>
+            <Row className='mt-4'>
                 <Col xs={12} sm={6} md={6} lg={3} className='m-0'>
                     {items?.length > 0 ?
                         items.slice(0, 2).map((el: any) => {

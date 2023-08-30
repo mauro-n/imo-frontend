@@ -19,7 +19,7 @@ export const LoginForm = (props: any) => {
     const setIsModalOpen = props.setIsModalOpen;
     /* Hooks */
     const location = useLocation();
-    const from = location.state?.location?.pathname || '/profile/info';
+    const from = location.state?.location?.pathname || '/profile';
     const navigate = useNavigate();
     const axios = useAxios();
     const { setAuth } = useAuth();
@@ -67,7 +67,7 @@ export const LoginForm = (props: any) => {
     }, []);
 
     return (
-        <Form>
+        <Form className={style['form']}>
             <p className='text-center mb-2'>Faça login na sua conta ImoIdeal</p>
             <Container className='my-4'>
                 <FloatingLabel label="Login com e-mail" className={style.input}>

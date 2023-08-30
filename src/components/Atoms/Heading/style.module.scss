@@ -1,0 +1,26 @@
+.heading {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.md {
+    font-size: 1.5rem;
+}
+
+.lg {
+    font-size: 1.74rem;
+}
+
+.xlg {
+    font-size: 2.1rem;
+}
+
+@media(max-width: 767px) {
+    .xlg {
+        font-size: 1.8rem;
+    }
+}

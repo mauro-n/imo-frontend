@@ -24,12 +24,6 @@ export function NavbarComp() {
     const { auth, setAuth } = useAuth();
     const verifyAuth = useVerifyAuth();
 
-    const handleMyAds = () => {
-        if (!auth?.user) return handleToggleModal();
-        navigate('/profile/info');
-        return;
-    }
-
     const handleCreateAd = () => {
         if (!auth?.user) return handleToggleModal();
         return navigate('/profile/create-ad');
@@ -88,25 +82,19 @@ export function NavbarComp() {
                                 className={`${style['profile-btn']} ms-sm-2`}
                                 align='end'
                             >
-                                <NavDropdown.Item onClick={handleMyAds}>
+                                <NavDropdown.Item onClick={() => navigate('/profile/my-posts')}>
                                     Meus Anúncios
                                 </NavDropdown.Item>
-
+                                <NavDropdown.Item onClick={() => navigate('/profile')}>
+                                    Meu Perfil
+                                </NavDropdown.Item>
                                 <NavDropdown.Divider />
-
                                 <NavDropdown.Item onClick={handleLogout}>
                                     Sair
                                 </NavDropdown.Item>
                             </NavDropdown > :
-
-                            <Nav.Link
-                                className={`${style.announceBtn} text-center mb-3 mb-sm-0 ms-sm-3`}
-                                onClick={handleMyAds}
-                            >
-                                Meus anúncios
-                            </Nav.Link>
+                            <></>
                         }
-
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

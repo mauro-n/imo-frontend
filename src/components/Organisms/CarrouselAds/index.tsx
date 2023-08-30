@@ -11,6 +11,7 @@ import { Pagination, Navigation, Scrollbar } from 'swiper/modules';
 
 /* Bootstrap */
 import { Col, Container, Row } from 'react-bootstrap';
+import { Heading } from '../../Atoms/Heading';
 
 export const CarrouselAds = () => {
     const ADS_URL = 'https://raw.githubusercontent.com/mauro-n/api-mauro-n/main/imoIdeal-mock/getAds.json';
@@ -42,9 +43,9 @@ export const CarrouselAds = () => {
     return (
         <Container fluid className={`${style.swiperContainer}`}>
             <Row>
-                <h1 className='h3 text-center mb-3'>Anúncios destacados</h1>
+                <Heading as={'h2'} size='lg'>Anúncios destacados</Heading>
             </Row>
-            <Row>
+            <Row className='mt-4'>
                 <Col xs={12} md={10} className={style.slideWrapper}>
                     <Swiper
                         onSwiper={setSwiperRef}

@@ -11,6 +11,7 @@ import { ProfileDetails } from "../../components/Molecules/ProfileDetails";
 import { AppProvider } from "../../context/AppProvider";
 import { CreateAd } from "../../components/Organisms/CreateAd";
 import { PostPage } from "../../pages/PostPage";
+import { MyPostsTemplate } from "../../templates/MyPostsTemplate";
 
 export const MainRouter = () => {
     return (
@@ -23,10 +24,11 @@ export const MainRouter = () => {
 
                         <Route element={<RequireAuth />}>
                             <Route path="/profile" element={<ProfilePage />}>
-                                <Route path="info" element={<ProfileInfo />}>
+                                <Route path="" element={<ProfileInfo />}>
                                     <Route path="details" element={<ProfileDetails />} />
                                 </Route>
                                 <Route path="create-ad" element={<CreateAd />} />
+                                <Route path="my-posts" element={<MyPostsTemplate />} />
                             </Route>
                             <Route path="/posts">
                                 <Route path="see-post" element={<PostPage />} />

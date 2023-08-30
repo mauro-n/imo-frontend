@@ -7,6 +7,7 @@ import { StandaloneSearchBox } from '@react-google-maps/api';
 import { useApp } from '../../../hooks/useApp';
 import { useNavigate } from 'react-router-dom';
 import { useAxios } from '../../../hooks/useAxios';
+import { Heading } from '../../Atoms/Heading';
 
 export const SearchForm = () => {
     const SEARCH_URL = 'search';
@@ -111,10 +112,9 @@ export const SearchForm = () => {
     return (
         <>
             <Form className={`${style.searchForm}`}>
-                <h1
-                    className={`${style.heading} h3 text-center d-none d-md-block mb-3`}>
+                <Heading as={'h1'} size='xlg'>
                     O melhor site para encontrar casas para vender ou alugar
-                </h1>
+                </Heading>
                 <div className={`${style.inputContainer} mb-4 w-100`}>
                     <div className={`${style.tab} d-lg-none`}>Pesquisar Imóveis</div>
                     <Row className='w-100 mt-3 mt-md-0 px-0 px-md-2 pt-2'>

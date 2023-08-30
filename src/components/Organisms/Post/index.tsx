@@ -5,8 +5,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SmBadge } from '../../Atoms/SmBadge';
 import { Pagination, Navigation, Scrollbar } from 'swiper/modules';
-/* Hooks */
-//import { useState } from 'react';
+/* Helper */
 import getDateDiff from '../../../helper/getDateDiff';
 
 type Post = {

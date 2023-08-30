@@ -1,0 +1,43 @@
+$modal-height: 200px;
+$modal-width: 300px;
+
+.btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #DC3545;
+    color: white;
+    margin: 0 0.3rem;
+    &:hover {
+        filter: brightness(0.9);
+    }
+}
+
+.btn-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.confirm {
+    background-color: transparent;
+    color: black;
+    border: 1px solid #DC3545;
+    transition: background-color 100ms ease-in-out;
+    &:hover {
+        background-color: #DC3545;
+        color: white;
+    }
+}
+
+.confirmation-modal {
+    background-color: white;
+    height: $modal-height;
+    width: $modal-width;
+    transform: translateY(calc(50% + $modal-height / 2));
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    align-items: center;
+}
